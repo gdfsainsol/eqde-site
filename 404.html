@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Not found — EqDe Capital</title>
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;450&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#263054;--blue:#4E6FB2;--cyan:#0B9DD0;--green:#16B774;--gold:#F2B705;
+  --wash:#EEF4FB;--mu:#5E6E8C;--edge:#D8E3F0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100dvh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;text-align:center;padding:40px 22px;color:var(--navy);
+  background:linear-gradient(165deg,#FFF 0%,var(--wash) 48%,#E2EDF9 100%);
+  font:400 16px/1.6 "IBM Plex Sans",system-ui,sans-serif}
+.logo-row{display:flex;align-items:center;gap:15px}
+.mark{width:52px}
+.word{font:800 clamp(38px,7vw,64px)/.9 "Archivo",sans-serif;letter-spacing:-.045em}
+.word .d{background:linear-gradient(96deg,var(--cyan),var(--green));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.code{margin-top:34px;font:500 11px/1 "IBM Plex Mono",monospace;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--mu)}
+h1{margin-top:15px;font:400 clamp(24px,3.4vw,36px)/1.25 "Newsreader",Georgia,serif;
+  letter-spacing:-.018em;max-width:20ch}
+p{margin-top:14px;color:var(--mu);max-width:44ch}
+.rule{width:52px;height:3px;border-radius:2px;background:var(--gold);margin:22px 0 0}
+a.home{margin-top:28px;text-decoration:none;color:#fff;border-radius:7px;padding:13px 28px;
+  font:500 15px/1 "IBM Plex Sans",sans-serif;
+  background:linear-gradient(96deg,var(--navy) 0%,var(--blue) 52%,#11B092 100%)}
+a.home:hover{filter:brightness(1.09)}
+img.parent{margin-top:38px;height:34px;opacity:.85}
+</style>
+</head>
+<body>
+  <div class="logo-row">
+    <svg class="mark" viewBox="0 0 120 120" aria-label="EqDe Capital">
+      <defs><linearGradient id="sw" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#4E6FB2"/><stop offset="52%" stop-color="#0B9DD0"/>
+        <stop offset="100%" stop-color="#16B774"/></linearGradient></defs>
+      <rect x="12" y="38" width="96" height="16" rx="3" fill="#263054"/>
+      <rect x="12" y="70" width="14" height="16" rx="3" fill="url(#sw)"/>
+      <rect x="30" y="70" width="14" height="16" rx="3" fill="url(#sw)"/>
+      <rect x="48" y="70" width="14" height="16" rx="3" fill="url(#sw)"/>
+      <rect x="66" y="70" width="14" height="16" rx="3" fill="url(#sw)"/>
+      <rect x="84" y="70" width="24" height="16" rx="3" fill="url(#sw)"/>
+    </svg>
+    <div class="word">Eq<span class="d">De</span></div>
+  </div>
+
+  <p class="code">Error 404</p>
+  <h1>That page isn't here.</h1>
+  <p>The link may be out of date, or the page may have moved. The front door still works.</p>
+  <div class="rule"></div>
+  <a class="home" href="/">Back to sign in</a>
+  <img class="parent" src="assets/gdfs-logo.png" alt="GDFS Group">
+</body>
+</html>
