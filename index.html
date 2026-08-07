@@ -38,8 +38,9 @@
   --disp:"Archivo",system-ui,sans-serif;--serif:"Newsreader",Georgia,serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
+html{height:100%}
 body{background:linear-gradient(158deg,#FFFFFF 0%,var(--wash) 52%,#E2EDF9 100%);
+  background-attachment:fixed;
   color:var(--navy);font:400 16px/1.6 var(--sans);min-height:100%}
 
 
@@ -133,16 +134,35 @@ body{background:linear-gradient(158deg,#FFFFFF 0%,var(--wash) 52%,#E2EDF9 100%);
   transition:background .3s}
 .dots i.on{background:var(--navy)}
 
-/* ---------- narrower screens: centre only, quotes beneath ---------- */
+/* ---------- below three columns: stack film, login, quotes ---------- */
 @media(max-width:1180px){
-  .gate{grid-template-columns:1fr;justify-items:center;gap:26px;padding-top:34px}
-  .film-side{display:none}
-  .quote-side{order:3;width:100%;max-width:430px}
-  .quotes{min-height:150px;text-align:center}
+  .gate{grid-template-columns:1fr;justify-items:center;align-content:start;
+    gap:clamp(22px,4vw,34px);padding:clamp(22px,4vw,38px) 20px 44px;min-height:auto}
+  .film-side{order:1;width:100%;max-width:540px}
+  .core{order:2;width:100%}
+  .quote-side{order:3;width:100%;max-width:540px}
+  .reel-box{max-width:100%}
+  .quotes{max-width:100%;min-height:168px;text-align:center}
   .q .kick{justify-content:center}
   .dots{justify-content:center}
 }
-@media(max-width:600px){.quote-side{display:none}}
+
+/* ---------- phones ---------- */
+@media(max-width:640px){
+  .gate{gap:24px;padding:18px 16px 40px}
+  .quotes{min-height:190px}
+  .card{margin-top:22px;padding:22px}
+  .tag{margin-top:16px}
+  .tag::after{margin-top:13px}
+  .reel-foot{gap:10px}
+  .parent{margin-top:24px}
+}
+
+/* very small phones - keep the quote from crowding */
+@media(max-width:380px){
+  .quotes{min-height:210px}
+  .q3 .t{font-size:14px;letter-spacing:.07em}
+}
 
 .logo-row{display:flex;align-items:center;gap:clamp(11px,1.7vw,18px)}
 .mark{width:clamp(40px,5vw,58px);flex:none}
