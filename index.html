@@ -441,12 +441,12 @@ function signIn(){
   const email = document.getElementById('email').value.trim();
   const pw    = document.getElementById('pw').value;
   if(!email || !pw){ msg.textContent = 'Enter your work email and password.'; return; }
-  msg.textContent = 'Sign-in is not connected yet. The backend is not built.';
-  /* Phase 3:
-     const r = await fetch('/api/session', {method:'POST',
-       headers:{'Content-Type':'application/json'}, body:JSON.stringify({email, pw})});
-     if (r.ok) location.href = '/app/'; else msg.textContent = 'Those details do not match.';
-  */
+  /* This form checks nothing. It opens the dashboard so the team can walk the
+     screens on a real device. Cloudflare Access replaces it before launch, and
+     until then anyone reaching this page can reach the dashboard behind it. */
+  msg.textContent = 'Opening the desk\u2026';
+  try { sessionStorage.removeItem('eqde_greeted'); } catch (e) {}
+  setTimeout(() => { location.href = 'dashboard.html'; }, 400);
 }
 document.getElementById('go').addEventListener('click', signIn);
 document.getElementById('pw').addEventListener('keydown', e => {
