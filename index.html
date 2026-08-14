@@ -3,459 +3,246 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>EqDe Capital — a GDFS Group company</title>
+<title>EqDe Capital</title>
 <meta name="robots" content="noindex,nofollow">
 
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32">
 <link rel="icon" href="assets/favicon-512.png" sizes="512x512">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<meta name="theme-color" content="#263054">
+<meta name="theme-color" content="#050506">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="EqDe Capital">
 <meta property="og:title" content="EqDe Capital">
-<meta property="og:description" content="We calculate. We don't predict. A GDFS Group company.">
+<meta property="og:description" content="A GDFS Group company.">
 <meta property="og:url" content="https://eqdecapital.com/">
 <meta property="og:image" content="https://eqdecapital.com/assets/og-card.png">
 <meta name="twitter:card" content="summary_large_image">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;450;500&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;450;500;600&display=swap" rel="stylesheet">
+
 <style>
 :root{
-  /* pulled straight from the GDFS mark */
-  --navy:#263054;         /* wordmark */
-  --violet:#8A4794;       /* swoosh start */
-  --blue:#4E6FB2;
-  --cyan:#0B9DD0;
-  --teal:#11B092;
-  --green:#16B774;        /* swoosh end */
-  --gold:#F2B705;         /* accent */
-  --paper:#FFFFFF;
-  --wash:#EEF4FB;
-  --mu:#5E6E8C;
-  --edge:#D8E3F0;
-  --sans:"IBM Plex Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;
-  --disp:"Archivo",system-ui,sans-serif;--serif:"Newsreader",Georgia,serif;
+  /* every value below is taken from the mark itself */
+  --ink:#050506;          /* the mark's own ground */
+  --gold-d:#8F6B1E;
+  --gold:#C9A227;
+  --gold-l:#E7CC79;
+  --silver:#C6CBD1;
+  --paper:#F3F4F6;
+  --mu:#7E838C;
+  --line:rgba(255,255,255,.09);
+  --field:rgba(255,255,255,.035);
+  --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{height:100%}
-body{background:linear-gradient(158deg,#FFFFFF 0%,var(--wash) 52%,#E2EDF9 100%);
-  background-attachment:fixed;
-  color:var(--navy);font:400 16px/1.6 var(--sans);min-height:100%}
-
-
-/* the GDFS watermark and brand card are burned into the film itself */
-
-/* sound — browsers refuse to autoplay audio, so the film starts muted and
-   the visitor turns sound on. */
-.reel-foot{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center}
-.snd{cursor:pointer;display:flex;align-items:center;gap:8px;
-  padding:9px 15px 9px 13px;border:1px solid var(--edge);border-radius:999px;
-  background:var(--paper);color:var(--navy);
-  font:500 10px/1 var(--mono);letter-spacing:.17em;text-transform:uppercase;
-  box-shadow:0 2px 8px rgba(38,48,84,.07);transition:border-color .2s,color .2s}
-.snd:hover{border-color:var(--cyan)}
-.snd svg{width:14px;height:14px;flex:none;fill:currentColor}
-.snd .wave{opacity:0;transition:opacity .2s}
-.snd.live .wave{opacity:1}
-.snd.live{border-color:var(--green);color:var(--teal)}
-
-/* ================= login ================= */
-/* three columns on wide screens: film | login | quotes. The centre column is
-   exactly what it was before; the sides simply fill what used to be empty. */
-.gate{position:relative;z-index:10;min-height:100dvh;
-  display:grid;grid-template-columns:1fr minmax(340px,404px) 1fr;
-  align-items:center;gap:clamp(20px,3.2vw,56px);padding:40px clamp(22px,3vw,54px) 30px;
+html,body{height:100%}
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font:400 15px/1.55 var(--sans);
+  -webkit-font-smoothing:antialiased;
+  display:flex;align-items:center;justify-content:center;
+  padding:40px 22px;
+  position:relative;overflow-x:hidden;
 }
-.core{display:flex;flex-direction:column;align-items:center}
-.side{display:flex;flex-direction:column;align-items:center;gap:14px;min-width:0}
-
-/* ---------- left: the reel keeps turning ---------- */
-.reel-box{position:relative;width:100%;max-width:430px;aspect-ratio:16/9;
-  background:#05080F;border-radius:6px;overflow:hidden;
-  box-shadow:0 22px 60px rgba(20,32,60,.30),0 0 0 1px rgba(38,48,84,.14)}
-.reel-box video{width:100%;height:100%;object-fit:contain;display:block;background:#000}
-.sprock{position:absolute;top:0;bottom:0;width:19px;z-index:3;
-  background:linear-gradient(90deg,rgba(2,5,12,.94),rgba(2,5,12,.6))}
-.sprock.l{left:0} .sprock.r{right:0;transform:scaleX(-1)}
-.sprock i{position:absolute;left:5px;width:9px;height:13px;border-radius:2px;
-  background:rgba(228,238,252,.17);animation:sprocket .55s linear infinite}
-@keyframes sprocket{to{transform:translateY(24px)}}
-.grain{position:absolute;inset:0;pointer-events:none;opacity:.20;mix-blend-mode:screen;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
-  animation:grain .7s steps(4) infinite}
-@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}
-  50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-2%)}100%{transform:translate(0,0)}}
-.leader{position:absolute;inset:0;z-index:5;background:#0C0D10;display:flex;
-  align-items:center;justify-content:center;transition:opacity .5s ease}
-.leader.gone{opacity:0;pointer-events:none}
-.leader svg{width:56%;height:auto}
-.lr{fill:none;stroke:#DFE6F2;stroke-width:1.6;opacity:.5}
-.lc{stroke:#DFE6F2;stroke-width:1.6;opacity:.4}
-.ln{font:600 92px "IBM Plex Mono",monospace;fill:#EEF3FB;text-anchor:middle;
-  dominant-baseline:central}
-.sweep{transform-origin:150px 150px;animation:sweep 1s linear infinite}
-@keyframes sweep{to{transform:rotate(360deg)}}
-.scratch{position:absolute;top:0;bottom:0;width:1px;background:rgba(255,255,255,.5);
-  animation:scratch 2.3s linear infinite}
-@keyframes scratch{0%,100%{opacity:0}8%{opacity:.55}9%{opacity:0}
-  46%{opacity:0}48%{opacity:.4}49%{opacity:0}}
-.reel-cap{font:500 9.5px/1 var(--mono);letter-spacing:.3em;text-transform:uppercase;
-  color:#8494AE}
-
-/* ---------- right: rotating quotes ---------- */
-.quotes{position:relative;width:100%;max-width:430px;min-height:184px}
-.q{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
-  opacity:0;transform:translateY(10px);transition:opacity .7s ease,transform .7s ease}
-.q.on{opacity:1;transform:none}
-.q .kick{font:600 9.5px/1 var(--mono);letter-spacing:.3em;text-transform:uppercase;
-  color:var(--mu);margin-bottom:13px;display:flex;align-items:center;gap:9px}
-.q .kick::before{content:"";width:22px;height:2px;border-radius:2px;background:var(--gold)}
-.q1 .t{font:800 clamp(21px,1.9vw,29px)/1.22 var(--disp);letter-spacing:-.028em}
-.q1 .a{color:var(--navy)} .q1 .b{color:var(--blue)} .q1 .sep{color:var(--gold)}
-.q2 .t{font:300 clamp(23px,2.1vw,33px)/1.2 var(--serif);letter-spacing:-.018em;color:var(--navy)}
-.q2 .t em{font-style:italic;background:linear-gradient(96deg,var(--cyan),var(--green));
-  -webkit-background-clip:text;background-clip:text;color:transparent}
-.q3 .t{font:600 clamp(15px,1.35vw,20px)/1.62 var(--mono);letter-spacing:.11em;
-  text-transform:uppercase;color:var(--navy)}
-.q3 .t .hi{color:var(--teal)}
-.q4 .t{font:400 clamp(20px,1.8vw,28px)/1.32 var(--serif);color:var(--navy)}
-.q4 .t .hi{color:#8A4794;font-style:italic}
-.q4 .t .hi2{border-bottom:2px solid var(--gold);padding-bottom:1px}
-.q5 .t{font:700 clamp(20px,1.8vw,28px)/1.25 var(--disp);letter-spacing:-.024em}
-.q5 .t .a{color:var(--navy)}
-.q5 .t .b{background:linear-gradient(96deg,var(--blue),var(--green));
-  -webkit-background-clip:text;background-clip:text;color:transparent}
-.q6 .t{font:300 clamp(22px,2vw,31px)/1.24 var(--serif);font-style:italic;color:var(--navy)}
-.q6 .t .m{font:600 .6em/1 var(--mono);font-style:normal;letter-spacing:.06em;
-  text-transform:uppercase;color:var(--cyan);vertical-align:.06em}
-.dots{display:flex;gap:7px}
-.dots i{width:20px;height:3px;border-radius:2px;background:var(--edge);cursor:pointer;
-  transition:background .3s}
-.dots i.on{background:var(--navy)}
-
-/* ---------- below three columns: stack film, login, quotes ---------- */
-@media(max-width:1180px){
-  .gate{grid-template-columns:1fr;justify-items:center;align-content:start;
-    gap:clamp(22px,4vw,34px);padding:clamp(22px,4vw,38px) 20px 44px;min-height:auto}
-  .film-side{order:1;width:100%;max-width:540px}
-  .core{order:2;width:100%}
-  .quote-side{order:3;width:100%;max-width:540px}
-  .reel-box{max-width:100%}
-  .quotes{max-width:100%;min-height:168px;text-align:center}
-  .q .kick{justify-content:center}
-  .dots{justify-content:center}
+/* a single cold light above the mark, nothing more */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;
+  background:radial-gradient(120% 62% at 50% 6%,rgba(201,162,39,.10) 0%,transparent 58%);
 }
 
-/* ---------- phones ---------- */
-@media(max-width:640px){
-  .gate{gap:24px;padding:18px 16px 40px}
-  .quotes{min-height:190px}
-  .card{margin-top:22px;padding:22px}
-  .tag{margin-top:16px}
-  .tag::after{margin-top:13px}
-  .reel-foot{gap:10px}
-  .parent{margin-top:24px}
+.stage{width:100%;max-width:372px;position:relative;z-index:1}
+
+/* ---------- the mark ---------- */
+.mark{
+  display:block;width:100%;max-width:300px;margin:0 auto 34px;
+  /* the file carries a black ground; screen drops it onto the page ground */
+  mix-blend-mode:screen;
+  animation:markIn 3.1s cubic-bezier(.22,.61,.36,1) both;
+  will-change:transform,opacity;
+}
+/* enters large and centred, holds, then settles to its resting size on top */
+@keyframes markIn{
+  0%   {opacity:0;transform:translateY(var(--drop,86px)) scale(1.30);filter:blur(7px)}
+  20%  {opacity:1;transform:translateY(var(--drop,86px)) scale(1.27);filter:blur(0)}
+  52%  {opacity:1;transform:translateY(var(--drop,86px)) scale(1.27);filter:blur(0)}
+  100% {opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
 }
 
-/* very small phones - keep the quote from crowding */
-@media(max-width:380px){
-  .quotes{min-height:210px}
-  .q3 .t{font-size:14px;letter-spacing:.07em}
+.rule{
+  height:1px;margin:0 auto 30px;max-width:300px;
+  background:linear-gradient(90deg,transparent,var(--gold-d) 22%,var(--gold) 50%,var(--gold-d) 78%,transparent);
+  opacity:.55;transform:scaleX(0);transform-origin:50% 50%;
+  animation:ruleIn .9s cubic-bezier(.22,.61,.36,1) 2.35s both;
+}
+@keyframes ruleIn{to{transform:scaleX(1)}}
+
+/* ---------- sign in ---------- */
+.panel{animation:panelIn .95s cubic-bezier(.22,.61,.36,1) 2.5s both}
+@keyframes panelIn{
+  from{opacity:0;transform:translateY(16px)}
+  to  {opacity:1;transform:none}
 }
 
-.logo-row{display:flex;align-items:center;gap:clamp(11px,1.7vw,18px)}
-.mark{width:clamp(40px,5vw,58px);flex:none}
-.m-top{fill:var(--navy)}
-.m-seg{opacity:0}
-.gate .m-seg{animation:seg .5s cubic-bezier(.2,.9,.3,1) forwards}
-.gate .m-seg:nth-of-type(2){animation-delay:.42s}
-.gate .m-seg:nth-of-type(3){animation-delay:.52s}
-.gate .m-seg:nth-of-type(4){animation-delay:.62s}
-.gate .m-seg:nth-of-type(5){animation-delay:.72s}
-.gate .m-seg:nth-of-type(6){animation-delay:.82s}
-@keyframes seg{from{opacity:0;transform:translateX(17px)}to{opacity:1;transform:none}}
-.word{font:800 clamp(38px,7vw,80px)/.9 var(--disp);letter-spacing:-.045em;
-  white-space:nowrap;color:var(--navy)}
-.word .d{background:linear-gradient(96deg,var(--cyan),var(--green));
-  -webkit-background-clip:text;background-clip:text;color:transparent}
-.suite{margin-top:12px;font:500 10.5px/1 var(--mono);letter-spacing:.34em;
-  text-transform:uppercase;color:var(--mu)}
+.eyebrow{
+  font:500 9.5px/1 var(--mono);letter-spacing:.32em;text-transform:uppercase;
+  color:var(--mu);text-align:center;margin-bottom:26px;
+}
 
-.tag{margin-top:19px;text-align:center;font:400 clamp(18px,2.4vw,28px)/1.3 var(--serif);
-  color:var(--navy)}
-.tag b{display:block;font-weight:400;font-style:italic;color:var(--blue)}
-.tag::after{content:"";display:block;width:52px;height:3px;margin:15px auto 0;
-  border-radius:2px;background:var(--gold)}
+.field{margin-bottom:16px}
+.field label{
+  display:block;margin-bottom:8px;
+  font:500 9.5px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mu);
+}
+.field input{
+  width:100%;padding:13px 15px;
+  background:var(--field);color:var(--paper);
+  border:1px solid var(--line);border-radius:9px;
+  font:400 15px/1.2 var(--sans);
+  transition:border-color .18s ease,background .18s ease;
+}
+.field input::placeholder{color:#4E525A}
+.field input:hover{border-color:rgba(255,255,255,.16)}
+.field input:focus{
+  outline:none;background:rgba(255,255,255,.05);
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(201,162,39,.13);
+}
 
-/* card */
-.card{width:min(394px,100%);margin-top:28px;background:var(--paper);
-  border:1px solid var(--edge);border-radius:12px;padding:26px;
-  box-shadow:0 20px 54px rgba(38,48,84,.13),0 2px 6px rgba(38,48,84,.06)}
-.card h2{font:500 15px/1.3 var(--sans);color:var(--navy)}
-.card .sub{margin-top:5px;font-size:13px;color:var(--mu)}
-.field{margin-top:17px}
-.field label{display:block;font:500 10.5px/1 var(--mono);letter-spacing:.14em;
-  text-transform:uppercase;color:var(--mu);margin-bottom:7px}
-.field input{width:100%;background:#FBFDFF;color:var(--navy);border:1px solid var(--edge);
-  border-radius:7px;padding:12px 13px;font:400 15px/1.2 var(--sans)}
-.field input::placeholder{color:#9AAAC2}
-.field input:focus{outline:none;border-color:var(--cyan);
-  box-shadow:0 0 0 3px rgba(11,157,208,.16)}
-.submit{width:100%;margin-top:21px;cursor:pointer;color:#fff;border:none;
-  background:linear-gradient(96deg,var(--navy) 0%,var(--blue) 52%,var(--teal) 100%);
-  border-radius:7px;padding:14px;font:500 15px/1 var(--sans);letter-spacing:.005em}
-.submit:hover{filter:brightness(1.09)}
+.submit{
+  width:100%;margin-top:10px;padding:14px 18px;cursor:pointer;
+  border:none;border-radius:9px;
+  background:linear-gradient(100deg,var(--gold-d) 0%,var(--gold) 34%,var(--gold-l) 52%,var(--gold) 68%,var(--gold-d) 100%);
+  color:#1A1403;
+  font:600 11px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;
+  transition:filter .18s ease,transform .06s ease;
+}
+.submit:hover{filter:brightness(1.1)}
 .submit:active{transform:translateY(1px)}
-.msg{margin-top:12px;min-height:18px;text-align:center;font-size:12.5px;color:#A8701A}
-.alt{margin-top:13px;text-align:center;font-size:13px;color:var(--mu)}
-.alt a{color:var(--teal);text-decoration:none;font-weight:450}
-.alt a:hover{text-decoration:underline}
-.notice{margin-top:17px;padding-top:15px;border-top:1px solid var(--edge);
-  font:400 11px/1.55 var(--mono);color:#7E8DA6;text-align:center}
-.notice .dot{display:inline-block;width:6px;height:6px;border-radius:50%;
-  background:var(--green);margin-right:6px;vertical-align:1px}
+.submit:disabled{opacity:.55;cursor:default;filter:none}
 
-/* GDFS lockup below */
-.parent{margin-top:30px;display:flex;flex-direction:column;align-items:center;gap:11px}
-.parent .cap{font:500 9.5px/1 var(--mono);letter-spacing:.26em;text-transform:uppercase;
-  color:#8494AE}
-.parent img{height:clamp(30px,4.4vw,42px);display:block}
+.msg{
+  min-height:19px;margin-top:14px;text-align:center;
+  font:400 12.5px/1.5 var(--sans);color:var(--mu);
+}
+.msg.bad{color:#E0A0A0}
 
-.gate .logo-row,.gate .suite,.gate .tag,.gate .card,.gate .parent{
-  animation:up .9s ease backwards}
-.gate .logo-row{animation-delay:.15s}
-.gate .suite{animation-delay:.8s}
-.gate .tag{animation-delay:1.05s}
-.gate .card{animation-delay:1.45s}
-.gate .parent{animation-delay:1.9s}
-@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.foot{
+  margin-top:38px;text-align:center;
+  font:500 9px/1 var(--mono);letter-spacing:.26em;text-transform:uppercase;
+  color:#5A5E66;
+}
 
+/* keyboard users must always see where they are */
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
-
-@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important}}
+@media (max-width:400px){
+  .mark{max-width:246px;margin-bottom:28px}
+  .rule{max-width:246px}
+}
+@media (prefers-reduced-motion:reduce){
+  .mark,.rule,.panel{animation:none;opacity:1;transform:none}
+}
 </style>
 </head>
+
 <body>
+  <main class="stage">
+    <img class="mark" src="assets/eqde-mark.jpg" alt="EqDe Capital">
+    <div class="rule" aria-hidden="true"></div>
 
+    <section class="panel">
+      <p class="eyebrow">Alpha engine</p>
 
-
-<main class="gate" id="gate">
-
-  <!-- LEFT: the reel keeps rolling, with an academy leader when the gate opens -->
-  <aside class="side film-side">
-    <div class="reel-box">
-      <div class="sprock l" id="spL"></div>
-      <div class="sprock r" id="spR"></div>
-      <video id="loop" muted playsinline loop preload="none" disablepictureinpicture></video>
-      <div class="grain"></div>
-      <div class="leader" id="leader">
-        <svg viewBox="0 0 300 300" aria-hidden="true">
-          <circle class="lr" cx="150" cy="150" r="142"/>
-          <circle class="lr" cx="150" cy="150" r="112"/>
-          <circle class="lr" cx="150" cy="150" r="74"/>
-          <line class="lc" x1="150" y1="4" x2="150" y2="296"/>
-          <line class="lc" x1="4" y1="150" x2="296" y2="150"/>
-          <g class="sweep">
-            <path d="M150,150 L150,8 A142,142 0 0,1 250,50 Z" fill="rgba(223,230,242,.10)"/>
-            <line x1="150" y1="150" x2="150" y2="8" stroke="#DFE6F2" stroke-width="2"/>
-          </g>
-          <text class="ln" id="leadNum" x="150" y="152">4</text>
-        </svg>
-        <div class="scratch" style="left:24%"></div>
-        <div class="scratch" style="left:70%;animation-delay:.9s"></div>
+      <div class="field">
+        <label for="email">Work email</label>
+        <input id="email" type="email" autocomplete="username" spellcheck="false"
+               placeholder="name@eqdecapital.com">
       </div>
-    </div>
-    <div class="reel-foot">
-      <button class="snd" id="snd" aria-pressed="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M4 9v6h4l5 4V5L8 9H4z"/>
-          <g class="wave"><path d="M16.5 8.5a5 5 0 0 1 0 7l1.4 1.4a7 7 0 0 0 0-9.8l-1.4 1.4z"/></g>
-        </svg>
-        <span id="sndLabel">Sound on</span>
-      </button>
-      <p class="reel-cap">From paper to code</p>
-    </div>
-  </aside>
 
-  <!-- CENTRE: unchanged -->
-  <div class="core">
-  <div class="logo-row">
-    <svg class="mark" viewBox="0 0 120 120" aria-label="EqDe Capital">
-      <defs>
-        <linearGradient id="sw" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%"   stop-color="#4E6FB2"/>
-          <stop offset="52%"  stop-color="#0B9DD0"/>
-          <stop offset="100%" stop-color="#16B774"/>
-        </linearGradient>
-      </defs>
-      <rect class="m-top" x="12" y="38" width="96" height="16" rx="3"/>
-      <rect class="m-seg" x="12" y="70" width="14" height="16" rx="3" fill="url(#sw)"/>
-      <rect class="m-seg" x="30" y="70" width="14" height="16" rx="3" fill="url(#sw)"/>
-      <rect class="m-seg" x="48" y="70" width="14" height="16" rx="3" fill="url(#sw)"/>
-      <rect class="m-seg" x="66" y="70" width="14" height="16" rx="3" fill="url(#sw)"/>
-      <rect class="m-seg" x="84" y="70" width="24" height="16" rx="3" fill="url(#sw)"/>
-    </svg>
-    <div class="word">Eq<span class="d">De</span></div>
-  </div>
-  <p class="suite">Capital</p>
-  <p class="tag">We calculate.<b>We don't predict.</b></p>
+      <div class="field">
+        <label for="pw">Password</label>
+        <input id="pw" type="password" autocomplete="current-password"
+               placeholder="••••••••••">
+      </div>
 
-  <section class="card">
-    <h2>Sign in to the alpha engine</h2>
-    <p class="sub">Access is limited to EqDe team members.</p>
-    <div class="field">
-      <label for="email">Work email</label>
-      <input id="email" type="email" autocomplete="username" spellcheck="false"
-             placeholder="name@eqdecapital.com">
-    </div>
-    <div class="field">
-      <label for="pw">Password</label>
-      <input id="pw" type="password" autocomplete="current-password"
-             placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
-    </div>
-    <button class="submit" id="go">Sign in</button>
-    <p class="msg" id="msg" role="status"></p>
-    <p class="alt">Or <a href="#" id="otp">send me a one-time code</a></p>
-    <p class="notice"><span class="dot"></span>Every session is recorded against your name.</p>
-  </section>
+      <button class="submit" id="go">Sign in</button>
+      <p class="msg" id="msg" role="status" aria-live="polite"></p>
 
-  <div class="parent">
-    <span class="cap">A GDFS Group company</span>
-    <img src="assets/gdfs-logo.png" alt="GDFS Group — from health to wealth">
-  </div>
-  </div>
-
-  <!-- RIGHT: rotating quotes -->
-  <aside class="side quote-side">
-    <div class="quotes" id="quotes">
-      <div class="q q1 on">
-        <p class="kick">The method</p>
-        <p class="t"><span class="a">Discipline over impulse.</span>
-          <span class="sep">/</span> <span class="b">Code over chaos.</span></p>
-      </div>
-      <div class="q q2">
-        <p class="kick">The principle</p>
-        <p class="t">We don't predict the market.<br><em>We calculate it.</em></p>
-      </div>
-      <div class="q q3">
-        <p class="kick">The discipline</p>
-        <p class="t">Zero intuition.<br><span class="hi">Pure execution.</span></p>
-      </div>
-      <div class="q q4">
-        <p class="kick">The edge</p>
-        <p class="t">Where market <span class="hi">guesswork</span> meets
-          <span class="hi2">mathematical certainty</span>.</p>
-      </div>
-      <div class="q q5">
-        <p class="kick">The engine</p>
-        <p class="t"><span class="a">Built on logic.</span>
-          <span class="b">Driven by algorithms.</span></p>
-      </div>
-      <div class="q q6">
-        <p class="kick">The rule</p>
-        <p class="t">Trade the <span class="m">math</span>,<br>not the momentum.</p>
-      </div>
-    </div>
-    <div class="dots" id="dots"></div>
-  </aside>
-</main>
-
-  </div>
+      <p class="foot">A GDFS Group company</p>
+    </section>
+  </main>
 
 <script>
-/* The page IS the sign-in screen. The reel runs beside it - academy leader
-   first, then the film loops as ambience. */
-let sideStarted = false;
-function startSidePanels(){
-  if(sideStarted) return;
-  sideStarted = true;
-
-  for(const strip of [document.getElementById('spL'), document.getElementById('spR')]){
-    for(let i = 0; i < 34; i++){
-      const h = document.createElement('i');
-      h.style.top = (i * 24 - 24) + 'px';
-      strip.appendChild(h);
-    }
-  }
-
-  const loop = document.getElementById('loop');
-  const leader = document.getElementById('leader');
-  const num = document.getElementById('leadNum');
-  // source is attached only now, so it never competes with the intro download
-  loop.src = 'assets/intro.mp4';
-  loop.load();
-  let n = 4;
-  const tick = setInterval(() => {
-    n -= 1;
-    if(n >= 1){ num.textContent = n; }
-    else {
-      clearInterval(tick);
-      leader.classList.add('gone');
-      loop.play().catch(() => {});
-    }
-  }, 1000);
-
-  const qs = [...document.querySelectorAll('.q')];
-  const dots = document.getElementById('dots');
-  qs.forEach((_, i) => {
-    const d = document.createElement('i');
-    if(i === 0) d.classList.add('on');
-    d.addEventListener('click', () => show(i, true));
-    dots.appendChild(d);
-  });
-  let qi = 0, qTimer;
-  function show(i, manual){
-    qs[qi].classList.remove('on');
-    dots.children[qi].classList.remove('on');
-    qi = (i + qs.length) % qs.length;
-    qs[qi].classList.add('on');
-    dots.children[qi].classList.add('on');
-    if(manual){ clearInterval(qTimer); qTimer = setInterval(() => show(qi + 1), 7000); }
-  }
-  qTimer = setInterval(() => show(qi + 1), 7000);
-}
-startSidePanels();
-
-/* ---- sound: browsers refuse to autoplay audio, so the visitor opts in ---- */
-const snd = document.getElementById('snd');
-const sndLabel = document.getElementById('sndLabel');
-snd.addEventListener('click', () => {
-  const loop = document.getElementById('loop');
-  loop.muted = !loop.muted;
-  snd.classList.toggle('live', !loop.muted);
-  snd.setAttribute('aria-pressed', String(!loop.muted));
-  sndLabel.textContent = loop.muted ? 'Sound on' : 'Sound off';
-  loop.play().catch(() => {});
-});
-
 /* ------------------------------------------------------------------
-   STUB ONLY - THIS DOES NOT AUTHENTICATE ANYONE.
-   A static page cannot verify a credential; anything checked in JS is
-   readable by the visitor. Real enforcement goes in front of this page
-   (Cloudflare Access) or behind it (POST to the Python backend).
+   This form does not authenticate anyone on its own, and it cannot:
+   a static page has no secret to check against, and anything checked
+   in JavaScript is readable by the visitor. The real gate is
+   Cloudflare Access, which sits in FRONT of this page.
+
+   The POST below is live, so the moment /api/session exists on the
+   backend this page starts working with no further change. Until
+   then it says so plainly rather than pretending to sign anyone in.
 ------------------------------------------------------------------- */
-const msg = document.getElementById('msg');
-function signIn(){
-  const email = document.getElementById('email').value.trim();
-  const pw    = document.getElementById('pw').value;
-  if(!email || !pw){ msg.textContent = 'Enter your work email and password.'; return; }
-  /* This form checks nothing. It opens the dashboard so the team can walk the
-     screens on a real device. Cloudflare Access replaces it before launch, and
-     until then anyone reaching this page can reach the dashboard behind it. */
-  msg.textContent = 'Opening the desk\u2026';
-  try { sessionStorage.removeItem('eqde_greeted'); } catch (e) {}
-  setTimeout(() => { location.href = 'dashboard.html'; }, 400);
+const $   = id => document.getElementById(id);
+const msg = $('msg');
+const go  = $('go');
+
+function say(text, bad){
+  msg.textContent = text;
+  msg.classList.toggle('bad', !!bad);
 }
-document.getElementById('go').addEventListener('click', signIn);
-document.getElementById('pw').addEventListener('keydown', e => {
-  if(e.key === 'Enter') signIn();
-});
-document.getElementById('otp').addEventListener('click', e => {
-  e.preventDefault();
-  msg.textContent = 'One-time codes arrive with Cloudflare Access in phase 3.';
-});
+
+async function signIn(){
+  const email = $('email').value.trim();
+  const pw    = $('pw').value;
+
+  if(!email || !pw){ say('Enter your work email and password.', true); return; }
+
+  go.disabled = true;
+  say('Checking\u2026');
+
+  try{
+    const r = await fetch('/api/session', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({email, pw})
+    });
+
+    if(r.ok){ location.href = '/app/'; return; }
+
+    if(r.status === 404){
+      say('Sign-in is not connected yet. Access controls the door for now.');
+    }else if(r.status === 401 || r.status === 403){
+      say('Those details do not match.', true);
+    }else{
+      say('The server refused the request (' + r.status + '). Try again.', true);
+    }
+  }catch(e){
+    say('Cannot reach the server. Check it is running, then try again.', true);
+  }finally{
+    go.disabled = false;
+  }
+}
+
+go.addEventListener('click', signIn);
+['email','pw'].forEach(id =>
+  $(id).addEventListener('keydown', e => { if(e.key === 'Enter') signIn(); }));
+
+/* the mark drops by half the panel's height so it reads as centred while it
+   holds, then rises to its resting place. Measured, not guessed, so it lands
+   correctly on any screen. */
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const panel = document.querySelector('.panel');
+  const drop  = Math.min(Math.round(panel.offsetHeight / 2), 150);
+  document.querySelector('.mark').style.setProperty('--drop', drop + 'px');
+})();
 </script>
 </body>
 </html>

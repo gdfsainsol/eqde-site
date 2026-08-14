@@ -1,77 +1,85 @@
 # EqDe Capital — website
 
 Front end for EqDe Capital, a GDFS Group company. Static site, no build step:
-plain HTML and CSS, hosted free on GitHub Pages.
+plain HTML and CSS, hosted on GitHub Pages.
 
 ## Structure
 
 ```
 .
-├── index.html      front page — intro film, then the sign-in gate
+├── index.html      the sign-in gate
 ├── 404.html        branded not-found page
+├── dashboard.html  the desk (served locally by desk_server.py, not by Pages)
 ├── robots.txt      blocks search engines while access is team-only
 ├── CNAME           the custom domain (one line, no https://)
 └── assets/
-    ├── intro.mp4              the 30s film (2.2 MB, compressed from 24.7 MB)
-    ├── gdfs-logo.png          transparent, for light backgrounds
-    ├── gdfs-logo-white.png    knockout, used as the video watermark
+    ├── eqde-mark.jpg          the EqDe Capital mark
     ├── og-card.png            link-preview image, 1200×630
     ├── favicon-32.png
     ├── favicon-512.png
-    └── apple-touch-icon.png
+    ├── apple-touch-icon.png
+    ├── gdfs-logo-white.png    knockout, used on the dark pages
+    └── gdfs-logo.png          navy, for light backgrounds
 ```
 
-## Brand colours
+## Brand
 
-Sampled directly from the GDFS mark — do not guess replacements.
+The mark is gold and silver on black. Everything on the site is derived from it —
+do not substitute colours by eye.
 
 | Token | Hex | Use |
 |---|---|---|
-| Navy | `#263054` | Wordmark, headings, top bar of the EqDe mark |
-| Swoosh blue | `#4E6FB2` | Button gradient start |
-| Swoosh cyan | `#0B9DD0` | Focus rings, mid gradient |
-| Swoosh green | `#16B774` | "De", data segments, session dot |
-| Gold | `#F2B705` | Single accent rule under the tagline |
+| Ground | `#050506` | Page background. The mark's own ground is `#000000`; it is blended with `mix-blend-mode: screen` so no rectangle shows. |
+| Gold | `#C9A227` | Accent, focus rings, button |
+| Gold light | `#E7CC79` | Button highlight |
+| Gold dark | `#8F6B1E` | Button edges |
+| Paper | `#F3F4F6` | Body text |
+| Muted | `#7E838C` | Labels, secondary text |
 
-Type: Archivo (wordmark), IBM Plex Sans (interface), IBM Plex Mono (labels,
-figures), Newsreader (tagline and display lines).
+Type: IBM Plex Sans for the interface, IBM Plex Mono for labels and figures.
+No display face — the mark carries the wordmark, so a second one competes with it.
+
+The favicon is the infinity mark alone; the full lockup is unreadable at 32px.
 
 ## Deploying
 
-1. Create a repository on GitHub — public, since Pages is free only on public repos.
-2. Upload every file above, keeping `assets/` as a folder.
-3. Edit `CNAME` to contain your domain on one line, e.g. `eqdecapital.com`.
-4. Settings → Pages → Source: *Deploy from a branch* → `main` / `/ (root)`.
-5. At your registrar, point the domain at GitHub:
+Upload every file above, keeping `assets/` as a folder. Settings → Pages →
+Source: *Deploy from a branch* → `main` / `/ (root)`. Pushing any change
+redeploys in about a minute.
 
-   ```
-   A     @    185.199.108.153
-   A     @    185.199.109.153
-   A     @    185.199.110.153
-   A     @    185.199.111.153
-   CNAME www  <your-github-username>.github.io
-   ```
+DNS, at the registrar:
 
-6. Back in Settings → Pages, tick **Enforce HTTPS** once the certificate issues.
+```
+A     @    185.199.108.153
+A     @    185.199.109.153
+A     @    185.199.110.153
+A     @    185.199.111.153
+CNAME www  <github-username>.github.io
+```
 
-Pushing any change redeploys in about a minute.
+Then Settings → Pages → **Enforce HTTPS** once the certificate issues.
 
-## Security — read before launch
+## Security — read before sharing the link
 
-`index.html` contains a sign-in form that **does not authenticate anyone**. A static
-page cannot verify a credential; anything checked in JavaScript is readable by the
-visitor. The form is a shell waiting for a real gate.
+**The sign-in form does not authenticate anyone, and it cannot.** A static page has
+no secret to check against, and anything checked in JavaScript is readable by the
+visitor. The form posts to `/api/session`; until that endpoint exists it reports
+plainly that sign-in is not connected rather than pretending to admit anyone.
 
-Put **Cloudflare Access** in front of the domain before sharing the link. It rejects
-unauthenticated requests at the edge, so the page is never served to anyone outside
-the allow-list. Free for up to 50 users, with one-time email codes and an access log.
+**Cloudflare Access is the real gate.** It rejects unauthenticated requests at the
+edge, so the page is never served to anyone outside the allow-list.
 
-Until that is in place, treat the URL as public.
+When the Access policy is written, it must cover **the whole origin, every path** —
+not just the app. `/api/universe` now returns client names, quantities and values.
+It used to be stripped of client identity on the server; that strip was removed
+deliberately so the desk can see which accounts hold a name. There is no longer a
+server-side guard behind Access.
+
+Until Access is in place, treat the URL as public.
 
 ## Still to do
 
-- [ ] Cloudflare Access in front of the domain
-- [ ] Real domain in `CNAME`, real address in the email placeholder
-- [ ] Decide whether "seventeen years" belongs to EqDe Capital or GDFS Group
-- [ ] Session flag so returning team members skip the intro
-- [ ] The application itself — Universe, Client desk, Diagnostics, Execution
+- [ ] Cloudflare Access in front of the domain, covering every path
+- [ ] `/api/session` on the backend, or drop the form and let Access do the asking
+- [ ] Remove the seeded figures the dashboard ships with, so nothing invented
+      renders before the engine answers
